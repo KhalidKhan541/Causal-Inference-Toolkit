@@ -1,0 +1,46 @@
+# Causal Inference Methods Comparison - Configuration
+
+seed: 42
+n_observations: 5000
+
+# Data generation
+data:
+  n: 5000
+  seed: 42
+  true_ate: ~  # Will be calculated
+  confounders:
+    - age
+    - income
+    - education_years
+    - pre_score
+
+# Propensity Score Matching
+psm:
+  caliper: 0.05
+  method: logistic_regression
+
+# Inverse Probability Weighting
+ipw:
+  stabilize: true
+  trim: 0.01
+  robust_se: true
+
+# Difference-in-Differences
+did:
+  cluster_standard_errors: false
+  time_var: time_period
+
+# Regression Discontinuity Design
+rdd:
+  cutoff: 0.0
+  bandwidth: null  # auto-select
+  kernel: triangular
+
+# Synthetic Control
+synthetic_control:
+  n_permutations: 100
+  n_bootstraps: 200
+
+# Output
+output_dir: outputs
+plot_dir: outputs/plots
